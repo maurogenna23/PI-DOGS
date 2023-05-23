@@ -1,0 +1,27 @@
+.number{
+    margin-left: 20px;
+    border-radius: 20%;
+    border: white;
+    padding: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.number:hover{
+    transition: 0.5s;
+    box-shadow: 0px 15px 20px rgba(36, 35, 35, 0.534);
+    transform: translateY(-7px);
+    color: white;
+    background-color: rgb(36, 34, 34);
+}
+.p{
+    position: absolute;
+    margin-left: 210px;
+    margin-top: -1px;
+    background-color: rgb(36, 34, 34);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+
+}
