@@ -24,8 +24,8 @@
 }
 
 .img{
-  width: 380px;
-  height: 302px;
+  width: 375px;
+  height: 297px;
   border-radius: 1rem;
 }
 
@@ -64,67 +64,84 @@
 
 .flipCardBack {
   text-align: left;
-  background:rgb(206, 202, 198) 100%;
+  background:rgb(255, 255, 255) 100%;
   color: rgb(27, 26, 26);
   transform: rotateY(180deg);
 }
 
-.flipCardBack h3 {
-  margin: 20px;
-  font-size: 20px;
+.h3Div{
+  color: rgb(48, 45, 45);
   text-align: center;
-  color: green;
-  background-color: white;
-  border-radius: 10px;
-  padding: 4px;
+  background-color: rgb(90, 216, 153); 
+  border-radius: 1rem;
+  width: 90%;
+  height: 30%;
+  padding: 2px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  margin-left: 19px;
+  font-size: 15px;
 }
 
-.flipCardBack span {
-  color: #c49f25;
+.highlight2 {
+  color: #eb531c;
+  font-weight: bold;
+}
+
+.highlight3{
+  color: rgb(53, 162, 196);
 }
 
 .text1{
+  font-size: 14px;
   border: 1px solid rgb(255, 255, 255);
   padding: 5px;
   border-radius: 5px;
   width: 80%;
   background-color: white;
-  margin-top: -2px;
+  margin-top: 1px;
   margin-left: 5px;
 }
 
 .text2{
+  font-size: 14px;
   border: 1px solid rgb(255, 255, 255);
   padding: 5px;
   border-radius: 5px;
   width: 80%;
   background-color: white;
-  margin-top: -2px;
+  margin-top: -17px;
   margin-left: 5px;
 }
 
 .text3{
+  font-size: 16px;
   border-radius: 10px;
   width: 25%;
   text-align: center;
   margin: 0 auto;
   padding: 5px;
-  background-color: white;
+  background-color: rgb(27, 156, 189);
   cursor: pointer;
   color: black;
-  transition: all 0.5s ease 0s;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.185);
+  transition: all 0.3s ease 0s;
 }
 
 .link {
   text-decoration: none;
-  color: rgb(0, 153, 255);
-  transition:  0.0s ease 0s;
+  color: white;
+  
 }
 
+
 .text3:hover{
-  transition: 1s;
-  background-color: black;
   color: white;
+  transform: translateY(-7px);
+}
+
+.text3:active {
+  transform: translateY(-1px);
 }
 
 .link:hover{

@@ -5,7 +5,7 @@
 .search{
     position: absolute;
     margin-top: -23px;
-    width: 300px;
+    width: 280px;
     --input-line: #e2dddda8;
     --input-text-color: #808080;
     --input-text-hover-color: transparent;
@@ -46,7 +46,7 @@
     height: 21px;
     position: absolute;
     top: 12px;
-    right: 8px;
+    right: 27px;
   }
 
   .search_box_icon{

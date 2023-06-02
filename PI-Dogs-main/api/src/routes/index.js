@@ -11,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-//router.get('/dogs/name/', getDogByName) //http://localhost:3001/dogs/name/?name=Felipe
+//router.get('/dogs/name/', getDogByName) //http://localhost:3001/dogs/?name=Felipe
 
 router.use('/dogs', dogsRouter); 
 router.use('/db', dogsRouterDb); 

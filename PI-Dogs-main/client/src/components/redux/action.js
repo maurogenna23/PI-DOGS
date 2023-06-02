@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_BY_NAME, GET_BY_DETAIL, GET_ALL_TEMPS, FILTER_ORIGIN , CREATE_DOG, FILTER_TEMPS, SET_CURRENT_PAGE, ORDER_BY_NAME, ORDER_BY_WEIGHT } from "./action-types";
+import { GET_ALL_DOGS, GET_BY_NAME, GET_BY_DETAIL, GET_ALL_TEMPS, FILTER_ORIGIN , CREATE_DOG, FILTER_TEMPS, SET_CURRENT_PAGE, ORDER_BY_NAME, ORDER_BY_WEIGHT, ORDER_BY_HEIGHT } from "./action-types";
 import axios from "axios"; 
 
 export const getDogs = () => {
@@ -14,12 +14,20 @@ export const getDogs = () => {
 
 export const getByName = (name) => {
     const endpoint = `http://localhost:3001/dogs/?name=${name}`
+
     return async (dispatch) => {
+        try{
+
         const { data } = await axios.get(endpoint);
         return dispatch({
             type: GET_BY_NAME,
             payload: data
         });
+    }
+        catch (error){
+            console.log(error)
+            window.alert(error.response.data)
+        }
     }
 }
 
@@ -67,39 +75,21 @@ export const getAllTemps = () =>{
               try {
                 const response = await axios.post(endpoint, dogData, {
                   headers: {
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json'
                   }
                 });
                 const { data } = response;
-                console.log("Respuesta del servidor:", data);
+                window.alert(data);
                 dispatch({
                   type: CREATE_DOG,
                   payload: data
                 });
               } catch (error) {
-                // Manejo de errores
-                console.error('Error al crear el perro:', error);
+                window.alert(error.response.data)
               }
             };
-          };
+          };  
           
-          
-// export const getDogFromDb = () =>{
-//     const endpoint = "http://localhost:3001/dogs/db";
-//     return async (dispatch) => {
-//         try {
-//         const response = await axios.get(endpoint);
-//         const { data } = response;
-//             dispatch({
-//                 type: GET_ALL_DOGS,
-//                 payload: data
-//             });
-//         } catch (error) {
-//             // Manejo de errores
-//             console.error('Error al buscar el perro:', error);
-//               }
-//         };
-//         };
 
 export const orderByName= (payload)=> {
     return {
@@ -111,6 +101,13 @@ export const orderByName= (payload)=> {
 export const orderByWeight= (payload)=> {
     return {
         type: ORDER_BY_WEIGHT,
+        payload
+    }
+}
+
+export const orderByHeight= (payload)=> {
+    return {
+        type: ORDER_BY_HEIGHT,
         payload
     }
 }

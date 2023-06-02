@@ -5,8 +5,8 @@ import Home from './views/Home/Home';
 import Create from './views/Create/create';
 import Detail from './views/Detail/detail';
 import NavBar from './components/NavBar/NavBar';
-import Success from './views/Success/Success';
 import Error from './components/Error/Error'
+import About from './views/About/About'; 
 
 function App() {
 
@@ -14,14 +14,14 @@ function App() {
 
   return (
     <div className="App">
-        {location.pathname !== "/" && location.pathname !== "/home" ? <NavBar/> : null} 
+        {location.pathname !== "/" && location.pathname !== "/home" && location.pathname !== "/about" ? <NavBar/> : null} 
         <Routes>
           <Route path='*' element={<Error/>}/>
           <Route path='/' element={<LandingPage/>}/>
+          <Route path='/about' element={<About/>} />
           <Route path='/home' element= {<Home/>}/>
           <Route path='/home/:id' element={<Detail/>} />
           <Route path='/create' element={<Create/>} />
-          <Route path='/success' element={<Success/>} />
         </Routes>
     </div>
   );

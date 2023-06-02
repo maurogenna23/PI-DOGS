@@ -7,5 +7,6 @@ export const FILTER_TEMPS = "FILTER_TEMPS";
 export const GET_ALL_TEMPS = "GET_ALL_TEMPS";
 export const CREATE_DOG = "CREATE_DOG";
 export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
+export const ORDER_BY_HEIGHT = "ORDER_BY_HEIGHT";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const SET_CURRENT_PAGE= "SET_CURRENT_PAGE";

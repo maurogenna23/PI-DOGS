@@ -1,32 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
 .containerLanding {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-image: url(https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80);
+    /* background-image: url(https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80); */
+    background-image: url(../../assets/backgroundLanding.png);
     background-repeat: no-repeat;
     background-size: cover;
   }
-  
+
+  .nav{
+    background-color: #000000;
+    width: 100%;
+    height: 90px;
+    position: absolute;
+    margin-top: -900px;
+  }
+
+  .navButton {
+    background-color: #ffffff;
+    margin-top: 38px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    color: #000000;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.185);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  .navButton:hover {
+    box-shadow: 0px 15px 20px rgba(36, 35, 35, 0.534);
+    color: #000000;
+    transform: translateY(-7px);
+  }
+
   .subContainer{
-    margin-bottom: 400px;
-    background-color: rgb(255, 255, 255);
-    padding: 25px;
-    border-radius: 10% ;
+    margin-top: -200px;
+    font-family: 'Bree Serif', serif;
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.897);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
   }
 
   .title {
-    font-size: 48px;
-    padding: 5px;
+    font-size: 58px;
+    /* padding: 5px; */
     border-radius: 10px;
     color: #000000;
-    background-color: #ffd000;
     margin-bottom: 20px;
   }
   
   .subTitle {
-    font-size: 24px;
+    font-size: 20px;
     color: #000000;
     margin-bottom: 40px;
   }
@@ -35,7 +70,7 @@
     padding: 10px 20px;
     font-size: 18px;
     color: #ffffff;
-    background-color: #6d6464;
+    background-color: #998c8c;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -43,8 +78,8 @@
   }
   
   .button:hover {
-    transition: 1s;
-    background-color: #f1c709;
+    transform: translateY(-7px);
+    background-color: #208ec2;
   }
   
 

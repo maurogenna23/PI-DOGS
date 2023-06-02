@@ -20,6 +20,7 @@ const NavBar = ({handleChange, handleSubmit}) =>{
                         </div>
                     </div>
                 </div>
+            
                 <button className={styles.createDog}>
                         <Link to={`/create`}>CREATE YOUR DOG 🐶</Link>
                 </button> 

@@ -3,25 +3,27 @@ import style from "./create.module.css"
 import validate from "./validate"
 import {createNewDog, getAllTemps} from "../../components/redux/action"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
 
 const Create = () =>{
 
     const dispatch = useDispatch()
     const temperaments = useSelector((state => state.temperaments))
-    const navigate = useNavigate();
+   
 
     const [input, setInput] = useState({
         name: "",
         image: "",
-        height: "",
-        weight: "",
+        heightMin: "",
+        heightMax: "",
+        weightMin: "",
+        weightMax: "",
         life_span: "",
         temperament: ""
     })
 
     const [error, setErrors] = useState({})  
-    const [success, setSuccess] = useState(false)
+    const [selectError, setSelectError] = useState("");
+    
 
     const handleInputs = (event) => {
       if (event.target.name === "temperament") {
@@ -41,28 +43,35 @@ const Create = () =>{
           setInput({
               ...input,
               [event.target.name]: event.target.value,
-          });
+          })
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            [event.target.name]:validate({ ...prevErrors,[event.target.name]:event.target.value })[event.target.name],
+          }));
       }
   };
       
       
-    const handleTemperament = (event) => {
-      const { value } = event.target;
-      if (input.temperament.includes(value)) {
-        return alert("Temperament cannot be repeated");
-      }
-      if (value === "all") {
-        return;
-      }
+  const handleTemperament = (event) => {
+    const { value } = event.target;
+  
+    if (input.temperament.includes(value)) {
+      setSelectError("Temperament cannot be repeated");
+    } else if (value === "all") {
+      setSelectError("Please select a valid temperament");
+    } else {
+      setSelectError("");
       setInput((prevInput) => ({
         ...prevInput,
-        temperament: prevInput.temperament ? `${prevInput.temperament}, ${value}` : value
+        temperament: prevInput.temperament ? `${prevInput.temperament}, ${value}` : value,
       }));
       setErrors((prevErrors) => ({
         ...prevErrors,
-        temperament: validate({ ...input, temperament: `${input.temperament}, ${value}` }).temperament
+        temperament: validate({ ...input, temperament: `${input.temperament}, ${value}` }).temperaments,
       }));
-    };
+    }
+  };
+  
       
 
     const handleDelete = (temp) => {
@@ -78,21 +87,15 @@ const Create = () =>{
     event.preventDefault();
     
     const jsonData = JSON.stringify(input);
-    console.log("Datos del perro (JSON):", jsonData); // Imprime los datos del perro en formato JSON
-  
     dispatch(createNewDog(jsonData));
-    
-    setSuccess(true);
+
   };
   
-
       useEffect(()=>{
         dispatch(getAllTemps())
       }, [dispatch])
 
-      if (success) {
-        navigate("/success")
-      }
+      
 
     return (
         <div className={style.create}>
@@ -114,25 +117,41 @@ const Create = () =>{
 
                     <br />
 
-                    <label htmlFor=""> Height (cm): </label>
+                    <label htmlFor="">  HeightMin (cm): </label>
                     <br />
-                    <input name="height" type="range"  onChange={handleInputs} min="1" max="150"  />
-                    <span>{input.height}</span>
-                    {error.height && <strong>{error.height}</strong>} 
+                    <input name="heightMin" type="number"  onChange={handleInputs} min="1" max="75"  />
+                    <span>{input.heightMin}</span>
+                    {error.heightMin && <strong>{error.heightMin}</strong>} 
 
                     <br />
 
-                    <label htmlFor=""> Weight (kg): </label>
+                    <label htmlFor=""> HeightMax (cm):</label>
                     <br />
-                    <input name="weight" type="range"  onChange={handleInputs} min="1" max="200"/>
-                    <span>{input.weight}</span>
-                    {error.weight && <strong>{error.weight}</strong>}
+                    <input name="heightMax" type="number"  onChange={handleInputs} min="75" max="150"  />
+                    <span>{input.heightMax}</span>
+                    {error.heightMax && <strong>{error.heightMax}</strong>} 
+
+                    <br />
+
+                    <label htmlFor=""> WeightMin (kg): </label>
+                    <br />
+                    <input name="weightMin" type="number"  onChange={handleInputs} min="1" max="50"/>
+                    <span>{input.weightMin}</span>
+                    {error.weightMin && <strong>{error.weightMin}</strong>}
+
+                    <br />
+
+                    <label htmlFor=""> WeightMax (kg): </label>
+                    <br />
+                    <input name="weightMax" type="number"  onChange={handleInputs} min="50" max="100"/>
+                    <span>{input.weightMax}</span>
+                    {error.weightMax && <strong>{error.weightMax}</strong>}
 
                     <br />
                     
                     <label htmlFor=""> Life expectancy: </label>
                     <br />
-                    <input name="life_span" type="range"   onChange={handleInputs} min="1" max="50"/>
+                    <input name="life_span" type="number"   onChange={handleInputs} min="1" max="50"/>
                     <span>{input.life_span}</span>
                     {error.life_span && <strong>{error.life_span}</strong>}
 
@@ -151,9 +170,10 @@ const Create = () =>{
                                     );
                                 })}
                         </select>
+                        {selectError && <strong>{selectError}</strong>}
+
                         <h4> My new Dog is: </h4>
                           <li>{input.temperament}</li>
-                        
 
                         <br />
                             <button
@@ -161,17 +181,20 @@ const Create = () =>{
                                 disabled={
                                     error.name ||
                                     error.image ||
-                                    error.weight ||
-                                    error.height ||
+                                    error.weightMin ||
+                                    error.weightMax ||
+                                    error.heightMin||
+                                    error.heightMax ||
                                     error.life_span ||
                                     !input.temperament.length ||
-                                    !input.name
+                                    !input.name ||
+                                    selectError
                                 }
                                 >
                                Add Dog   
                             </button>
                     </div>
-                    {error.temperaments && <strong>{error.temperaments}</strong>}
+                    
                 </div>
             </form>
             <div className={style.toDeleteContainer}>
@@ -189,3 +212,6 @@ const Create = () =>{
 
 export default Create
 
+//imagenes: 
+//https://img.europapress.es/fotoweb/fotonoticia_20160223095538-16021602359_800.jpg
+//https://media.diariopopular.com.ar/adjuntos/143/imagenes/006/829/0006829427.jpg

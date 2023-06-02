@@ -29,8 +29,8 @@ const DogDetails = () => {
           )}
           <div className={styles.containerP}>
               <p>This adorable dog has a wonderful personality: {dog.temperament}!</p>
-              <p>They come in a range of sizes, but this cutie weighs around {dog.weight} Kg.</p>
-              <p>When standing tall, they measure up to {dog.height} Cm.</p>
+              <p>They come in a range of sizes, but this cutie weights around {dog.weight} Lb.</p>
+              <p>When standing tall, they measure up to {dog.height} Ft.</p>
               <p>With good care, they can enjoy a long and happy life of approximately {dog.life_span}!</p>
           </div>
 
@@ -42,6 +42,3 @@ const DogDetails = () => {
 };
 
 export default DogDetails;
-
-
-//const {image, name, temperament, weight, height, life_span} = id

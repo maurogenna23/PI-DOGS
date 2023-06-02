@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:wght@500&display=swap');
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../../assets/backgroundLanding.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.subContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    width: 50%;
+    height: 65%;
+    margin: 0 auto;
+    margin-top: -150px;
+    background: linear-gradient(to bottom, #fff 0%, #ddd 100%);
+  }
+  
+  .myName{
+    color: rgb(8, 80, 109);
+  }
+
+  .descripcion {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: #555;
+    text-align: justify;
+    margin: 0 2rem;
+  }
+  
+  .imagen {
+    margin-top: -25px;
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .divLink {
+    margin-top: -30px;
+  }
+  
+  .link{
+    margin-left: 5px;
+    font-size: 25px;
+    color: rgba(94, 72, 14, 0.918);
+  }
+  
+  .red{
+    margin-top: -10px;
+  }
+  
+  

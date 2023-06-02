@@ -2,8 +2,6 @@ const getDogById = require('../controllers/getDogById')
 
 const getDogByIdHandler= async (req, res)=> {
     const {id} = req.params
-
-    //let origin= isNaN(id) ? "db" : "api";
     
     try {
         let result= await getDogById(id);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getByName, getDogs, filterOrigin, filterTemps, getAllTemps, setCurrentPage, orderByName, orderByWeight } from "../../components/redux/action"
+import { getByName, getDogs, filterOrigin, filterTemps, getAllTemps, setCurrentPage, orderByName, orderByWeight, orderByHeight } from "../../components/redux/action"
 import styles from "./home.module.css"
 import Cards from  "../../components/Cards/Cards"
 import NavBar from "../../components/NavBar/NavBar"
@@ -28,10 +28,13 @@ function Home(){
 
   //pagination
 
-    const numOfLastDog= currentPage * dogsPerPage;
-    const numOfFirstDog= numOfLastDog - dogsPerPage;
-    const dogValues = Object.values(allDogs);
-    const currentDogs = dogValues.slice(numOfFirstDog, numOfLastDog);
+    const numOfLastDog= currentPage * dogsPerPage; // se calcula multiplicando el número de la página actual (currentPage) 
+                                                   //por la cantidad de perros que se muestran por página (dogsPerPage). Esto representa el índice del último perro en la página actual.
+    const numOfFirstDog= numOfLastDog - dogsPerPage; //se calcula restando la cantidad de perros por página (dogsPerPage) al valor de numOfLastDog. 
+                                                     //Esto representa el índice del primer perro en la página actual.
+    const dogValues = Object.values(allDogs); //almacena los valores de todos los perros contenidos en el objeto allDogs.
+    const currentDogs = dogValues.slice(numOfFirstDog, numOfLastDog); // se utiliza el metodo slice() para obtener un subconjunto de elementos de dogValues 
+                                                                      //Se toman los elementos que van desde el índice numOfFirstDog hasta el índice numOfLastDog 
   
     const pagination= (page) => {
       dispatch(setCurrentPage(page))}
@@ -66,6 +69,12 @@ function Home(){
       dispatch(orderByWeight(value))
     }
 
+    const handleOrderHeight = (event) => {
+      event.preventDefault()
+      const {value} = event.target
+      dispatch(orderByHeight(value))
+    }
+
     //useEffects
 
    useEffect(() => {
@@ -84,8 +93,7 @@ function Home(){
 
     return (
         <div className={styles.homeContainer}>
-            <NavBar handleChange ={handleChange} handleSubmit={handleSubmit}/> 
-            {/* <h1 className={styles.title}>THE DOGS</h1> */}
+            <NavBar handleChange ={handleChange} handleSubmit={handleSubmit} /> 
             
       <div className={styles.order_filter}>
         <div className={styles.filterByOrigin}>
@@ -125,13 +133,24 @@ function Home(){
 
         <div>
           <div>
-            <select className={styles.select} onChange={event => {handleOrderWeight(event)}} defaultValue={"DEFAULT"}>
-              <option className={styles.option} value="DEFAULT" >All Weights</option>
+            <select className={styles.select} onChange={event => {handleOrderWeight(event)}} >
+              <option className={styles.option} value="All" >All Weights</option>
               <option className={styles.option} value="Ascendente">To heavy</option>
               <option className={styles.option} value="Descendente">To thin</option>
             </select>
           </div>
         </div>
+
+        <div>
+          <div>
+            <select className={styles.select} onChange={handleOrderHeight} >
+              <option className={styles.option} value="All" >All Heights</option>
+              <option className={styles.option} value="Asc">To tall</option>
+              <option className={styles.option} value="Desc">To small</option>
+            </select>
+          </div>
+        </div>
+
       </div>
 
       {isLoading ? <Loading /> : <Cards allDogs={currentDogs} />}
